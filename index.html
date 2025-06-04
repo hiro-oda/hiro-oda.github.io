@@ -202,12 +202,11 @@
     .team-member:hover {
       transform: translateY(-5px);
     }
-    .team-photo {
+    .team-photo img {
       width: 100%;
       height: 220px;
-      background-color: #ccc;
-      background-size: cover;
-      background-position: center;
+      object-fit: cover;
+      display: block;
     }
     .team-info {
       padding: 16px;
@@ -358,7 +357,7 @@
           <!-- 実績1 -->
           <div class="card">
             <img
-              src="https://source.unsplash.com/400x300/?mobile-app,ui"
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjB1aXxlbnwwfHx8fDE2NzgzNzk0ODQ&ixlib=rb-4.0.3&q=80&w=400"
               alt="モバイルアプリUIデザイン"
             />
             <div class="card-content">
@@ -373,7 +372,7 @@
           <!-- 実績2 -->
           <div class="card">
             <img
-              src="https://source.unsplash.com/400x300/?web-redesign,design"
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwyfHx3ZWIgcmVuZXdhbCUyMGRlc2lnbnxlbnwwfHx8fDE2NzgzNzk0OTc&ixlib=rb-4.0.3&q=80&w=400"
               alt="企業ウェブサイトリニューアル"
             />
             <div class="card-content">
@@ -387,7 +386,7 @@
           <!-- 実績3 -->
           <div class="card">
             <img
-              src="https://source.unsplash.com/400x300/?dashboard,ux"
+              src="https://images.unsplash.com/photo-1591696205602-9c8ff9dcb8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwzfHx1eCUyMGRhc2hib2FyZCUyMGRlc2lnbnxlbnwwfHx8fDE2NzgzNzk1MDY&ixlib=rb-4.0.3&q=80&w=400"
               alt="ダッシュボードUI改善"
             />
             <div class="card-content">
@@ -401,7 +400,7 @@
           <!-- 実績4 -->
           <div class="card">
             <img
-              src="https://source.unsplash.com/400x300/?branding,design"
+              src="https://images.unsplash.com/photo-1537432376769-00a8b50cec20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHw0fHxiYW5kJTIwZGVzaWdufGVufDB8fHx8MTY3ODM3OTUxNw&ixlib=rb-4.0.3&q=80&w=400"
               alt="ブランドガイドライン作成"
             />
             <div class="card-content">
@@ -423,10 +422,12 @@
         <div class="team-grid">
           <!-- メンバー1 -->
           <div class="team-member">
-            <div
-              class="team-photo"
-              style="background-image: url('https://source.unsplash.com/300x300/?businessman');"
-            ></div>
+            <div class="team-photo">
+              <img
+                src="https://images.unsplash.com/photo-1595152772835-219674b2a8a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwcGVvcGxlfGVufDB8fHx8MTY3ODM3OTUyNg&ixlib=rb-4.0.3&q=80&w=300"
+                alt="hiro_cs"
+              />
+            </div>
             <div class="team-info">
               <h4>hiro_cs</h4>
               <p>CEO / CTO</p>
@@ -439,10 +440,12 @@
 
           <!-- メンバー2 -->
           <div class="team-member">
-            <div
-              class="team-photo"
-              style="background-image: url('https://source.unsplash.com/300x300/?woman,designer');"
-            ></div>
+            <div class="team-photo">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGRlc2lnbmVyfGVufDB8fHx8MTY3ODM3OTUzMw&ixlib=rb-4.0.3&q=80&w=300"
+                alt="Yui Tanaka"
+              />
+            </div>
             <div class="team-info">
               <h4>Yui Tanaka</h4>
               <p>デザインディレクター</p>
@@ -454,10 +457,12 @@
 
           <!-- メンバー3 -->
           <div class="team-member">
-            <div
-              class="team-photo"
-              style="background-image: url('https://source.unsplash.com/300x300/?ux,researcher');"
-            ></div>
+            <div class="team-photo">
+              <img
+                src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHwzfHx1eCUyMHJlc2VhcmNoZXJ8ZW58MHx8fHwxNjc4Mzc5NTQ4&ixlib=rb-4.0.3&q=80&w=300"
+                alt="Kenji Sato"
+              />
+            </div>
             <div class="team-info">
               <h4>Kenji Sato</h4>
               <p>UXリサーチャー</p>
@@ -469,10 +474,12 @@
 
           <!-- メンバー4 -->
           <div class="team-member">
-            <div
-              class="team-photo"
-              style="background-image: url('https://source.unsplash.com/300x300/?developer');"
-            ></div>
+            <div class="team-photo">
+              <img
+                src="https://images.unsplash.com/photo-1589578527966-9cb46a70e5e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3MDF8MHwxfHNlYXJjaHw0fHxkZXZlbG9wZXJ8ZW58MHx8fHwxNjc4Mzc5NTYy&ixlib=rb-4.0.3&q=80&w=300"
+                alt="Akira Nakamura"
+              />
+            </div>
             <div class="team-info">
               <h4>Akira Nakamura</h4>
               <p>フロントエンドエンジニア</p>
