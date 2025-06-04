@@ -1,11 +1,554 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>こんにちは</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI/UX company</title>
+  <style>
+    /* リセットとベーススタイル */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    body {
+      background-color: #f9f9f9;
+    }
+
+    /* ヘッダーとナビゲーション */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+      color: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .nav-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* メインビジュアル */
+    .hero {
+      height: 60vh;
+      background: url('https://source.unsplash.com/1600x900/?ui,ux,design') center/cover
+        no-repeat;
+      position: relative;
+      margin-top: 80px; /* ヘッダーの高さ分マージン調整 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(24, 40, 72, 0.6);
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+    }
+
+    /* セクション共通 */
+    section {
+      padding: 60px 0;
+    }
+    section:nth-of-type(even) {
+      background-color: #fff;
+    }
+    section:nth-of-type(odd) {
+      background-color: #f0f0f0;
+    }
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: "";
+      width: 50px;
+      height: 4px;
+      background-color: #4b6cb7;
+      display: block;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+    .section-content {
+      width: 85%;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* 会社の理念 */
+    #philosophy p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    #philosophy ul {
+      text-align: left;
+      margin-left: 20px;
+    }
+    #philosophy ul li {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    /* 実績 */
+    #achievements .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 16px;
+      text-align: left;
+    }
+    .card-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #182848;
+    }
+    .card-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* 経営陣 */
+    #team .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .team-member {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-photo {
+      width: 100%;
+      height: 220px;
+      background-color: #ccc;
+      background-size: cover;
+      background-position: center;
+    }
+    .team-info {
+      padding: 16px;
+      text-align: center;
+    }
+    .team-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #182848;
+    }
+    .team-info p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* アクセス */
+    #access .access-info {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    #access iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    /* お問い合わせフォーム */
+    #contact form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+      text-align: left;
+    }
+    #contact label {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      display: block;
+      color: #333;
+    }
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    #contact textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    #contact button {
+      align-self: flex-start;
+      padding: 12px 24px;
+      background-color: #4b6cb7;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #contact button:hover {
+      background-color: #365191;
+    }
+
+    /* フッター */
+    footer {
+      background-color: #182848;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>こんにちは</h1>
+  <!-- ヘッダーとナビゲーション -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">UI/UX Company</div>
+        <div class="nav-links">
+          <a href="#philosophy">会社の理念</a>
+          <a href="#achievements">実績</a>
+          <a href="#team">経営陣</a>
+          <a href="#access">アクセス</a>
+          <a href="#contact">お問い合わせ</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインビジュアル -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ユーザー中心のデザインでビジネスを革新する</h1>
+      <p>UI/UXデザインの力で、次世代のデジタル体験を創造します</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- 会社の理念 -->
+    <section id="philosophy">
+      <div class="section-title">会社の理念</div>
+      <div class="section-content">
+        <p>
+          当社「UI/UX Company」は、「人を中心に据えたデザインこそが、真の価値を生む」という信念を掲げています。技術やトレンドに左右されることなく、常にユーザーの視点を重視し、
+          <strong>「使いやすさ」</strong>と<strong>「楽しさ」</strong>を両立させるプロダクトを追求し続けます。
+        </p>
+        <ul>
+          <li>ユーザーリサーチを徹底し、データに基づく意思決定を行う</li>
+          <li>シンプルさと直感的な操作性を最優先に考える</li>
+          <li>多様なバックグラウンドを持つメンバーが協働し、クリエイティブなアイデアを生み出す</li>
+          <li>クライアントとの密なコミュニケーションを通じて、ビジネス目標を達成する</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 実績 -->
+    <section id="achievements">
+      <div class="section-title">これまでの実績</div>
+      <div class="section-content">
+        <div class="cards">
+          <!-- 実績1 -->
+          <div class="card">
+            <img
+              src="https://source.unsplash.com/400x300/?mobile-app,ui"
+              alt="モバイルアプリUIデザイン"
+            />
+            <div class="card-content">
+              <h3>モバイルアプリUI/UX刷新プロジェクト</h3>
+              <p>
+                大手ECプラットフォームのモバイルアプリを全面リニューアル。ユーザビリティテストを繰り返し実施し、パフォーマンス向上と離脱率低減を同時に達成。UX改善により、
+                月間アクティブユーザー数が25%増加しました。
+              </p>
+            </div>
+          </div>
+
+          <!-- 実績2 -->
+          <div class="card">
+            <img
+              src="https://source.unsplash.com/400x300/?web-redesign,design"
+              alt="企業ウェブサイトリニューアル"
+            />
+            <div class="card-content">
+              <h3>企業ウェブサイトリニューアル</h3>
+              <p>
+                地方銀行のコーポレートサイトをデザインから実装まで一貫して担当。ビジュアルデザインの刷新とアクセシビリティ対応により、ユーザー満足度が大幅に向上。ページ滞在時間は平均1.8倍に。
+              </p>
+            </div>
+          </div>
+
+          <!-- 実績3 -->
+          <div class="card">
+            <img
+              src="https://source.unsplash.com/400x300/?dashboard,ux"
+              alt="ダッシュボードUI改善"
+            />
+            <div class="card-content">
+              <h3>業務用ダッシュボードUI改善</h3>
+              <p>
+                SaaSサービスの管理画面をUX視点で再設計。ユーザーインタビューをもとにタスクフローを最適化し、操作ステップを30%削減。クライアント社内での導入後、導入コストが15%削減されました。
+              </p>
+            </div>
+          </div>
+
+          <!-- 実績4 -->
+          <div class="card">
+            <img
+              src="https://source.unsplash.com/400x300/?branding,design"
+              alt="ブランドガイドライン作成"
+            />
+            <div class="card-content">
+              <h3>ブランドガイドライン策定</h3>
+              <p>
+                新興スタートアップのブランド戦略からビジュアルアイデンティティ（VI）を構築。ロゴ、カラーパレット、タイポグラフィガイドラインを設計し、一貫したブランドイメージを確立。ローンチ後、
+                投資家から高い評価を獲得しました。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 経営陣 -->
+    <section id="team">
+      <div class="section-title">経営陣</div>
+      <div class="section-content">
+        <div class="team-grid">
+          <!-- メンバー1 -->
+          <div class="team-member">
+            <div
+              class="team-photo"
+              style="background-image: url('https://source.unsplash.com/300x300/?businessman');"
+            ></div>
+            <div class="team-info">
+              <h4>hiro_cs</h4>
+              <p>CEO / CTO</p>
+              <p>
+                UI/UX Companyの創業者にして技術責任者。10年以上にわたり、国内外のスタートアップおよびエンタープライズ向けにUI/UXデザインを提供。ユーザリサーチとプロトタイピングに精通し、
+                常に最先端技術を取り入れることを信条とする。
+              </p>
+            </div>
+          </div>
+
+          <!-- メンバー2 -->
+          <div class="team-member">
+            <div
+              class="team-photo"
+              style="background-image: url('https://source.unsplash.com/300x300/?woman,designer');"
+            ></div>
+            <div class="team-info">
+              <h4>Yui Tanaka</h4>
+              <p>デザインディレクター</p>
+              <p>
+                ビジュアルデザインとアートディレクションを統括。豊富なブランドデザイン経験を生かし、一貫性のあるUIビジュアルを提供。受賞歴多数。
+              </p>
+            </div>
+          </div>
+
+          <!-- メンバー3 -->
+          <div class="team-member">
+            <div
+              class="team-photo"
+              style="background-image: url('https://source.unsplash.com/300x300/?ux,researcher');"
+            ></div>
+            <div class="team-info">
+              <h4>Kenji Sato</h4>
+              <p>UXリサーチャー</p>
+              <p>
+                定量・定性調査を駆使し、ユーザーインサイトを抽出するスペシャリスト。複数のプロジェクトでUXリサーチをリードし、クライアントの意思決定をサポート。
+              </p>
+            </div>
+          </div>
+
+          <!-- メンバー4 -->
+          <div class="team-member">
+            <div
+              class="team-photo"
+              style="background-image: url('https://source.unsplash.com/300x300/?developer');"
+            ></div>
+            <div class="team-info">
+              <h4>Akira Nakamura</h4>
+              <p>フロントエンドエンジニア</p>
+              <p>
+                ReactやVueを用いたインタラクティブなUI構築を担当。アクセシビリティ標準に準拠したコードを得意とし、デザインを忠実に再現しつつ高パフォーマンスを実現。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- アクセス -->
+    <section id="access">
+      <div class="section-title">アクセス</div>
+      <div class="section-content">
+        <div class="access-info">
+          <p><strong>所在地：</strong>〒106-0032 東京都港区六本木○丁目○-○ UI/UXビル 5F</p>
+          <p>
+            <strong>最寄り駅：</strong>東京メトロ日比谷線 六本木駅（徒歩5分）<br />
+            東京メトロ千代田線 乃木坂駅（徒歩7分）
+          </p>
+          <p>
+            六本木ヒルズから徒歩3分。ビル入口にUI/UX Companyのロゴプレートがございますので、お気軽にお越しください。
+          </p>
+        </div>
+        <!-- Google Map埋め込み（仮） -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.1234567890123!2d139.73000000000002!3d35.660000000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b0e1234567%3A0xabcd1234efgh5678!2z5Lit5aSu6LeF5a6g5LqM5bCP5biC6YeP!5e0!3m2!1sja!2sjp!4v1620000000000"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact">
+      <div class="section-title">お問い合わせ</div>
+      <div class="section-content">
+        <form action="#" method="post">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" placeholder="山田太郎" required />
+
+          <label for="email">メールアドレス</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@example.com"
+            required
+          />
+
+          <label for="subject">件名</label>
+          <input type="text" id="subject" name="subject" placeholder="ご相談内容" required />
+
+          <label for="message">お問い合わせ内容</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="ご要望やご質問などをご入力ください"
+            required
+          ></textarea>
+
+          <button type="submit">送信</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2025 UI/UX Company. All Rights Reserved.</p>
+    <p>
+      <a href="#">プライバシーポリシー</a> ｜ <a href="#">利用規約</a>
+    </p>
+  </footer>
 </body>
 </html>
 
